@@ -3,15 +3,14 @@
     "name": "packageInfo",
     "version": "1.0.0",
     "description": "helps to find the information about node packages  in one select",
-    "icons": {
-      "128": "focus.png"
-    },
+  
     "permissions": ["storage", "activeTab", "tabs","notifications"],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
   
-        "js": ["build/select.js"]
+        "js": ["build/select.js"],
+        "css": ["build/popup.css"]
       }
     ],
   
