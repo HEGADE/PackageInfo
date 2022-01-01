@@ -4,7 +4,6 @@ let prevText = null;
 window.onload = () => {
   createPopup();
   let selection = document.querySelector(".id-22-lol section");
-  let div = document.querySelector(".id-22-lol");
   let packageNpmName = document.querySelector("#h1-heading-content");
   let packageNpmDes = document.querySelector("#p-content-info");
   let author = document.querySelector("#li-content-author-name");
