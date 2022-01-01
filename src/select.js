@@ -1,9 +1,5 @@
 import { showPopUp as createPopup } from "./npm/showInfo";
 import { sleep, getData,fillPopup } from "./npm/utils";
-
-console.log("successfully added the script");
-
-
 let prevText = null;
 window.onload = () => {
   createPopup();
