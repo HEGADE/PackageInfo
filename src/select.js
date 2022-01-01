@@ -5,10 +5,10 @@ window.onload = () => {
   createPopup();
   let selection = document.querySelector(".id-22-lol section");
   let div = document.querySelector(".id-22-lol");
-  let packageNpmName = document.querySelector("#h1-lol-123");
-  let packageNpmDes = document.querySelector("#p-lol-123");
-  let author = document.querySelector("#li1-lol-123");
-  let authorMail = document.querySelector("#li2-lol-123");
+  let packageNpmName = document.querySelector("#h1-heading-content");
+  let packageNpmDes = document.querySelector("#p-content-info");
+  let author = document.querySelector("#li-content-author-name");
+  let authorMail = document.querySelector("#li-content-author-mail");
   let npmLink = document.querySelector("#a1-lol-123");
   let githubLink = document.querySelector("#a2-lol-123");
   let packageNpm = {};
