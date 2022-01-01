@@ -3,7 +3,9 @@
     "name": "packageInfo",
     "version": "1.0.0",
     "description": "helps to find the information about node packages  in one select",
-  
+    "icons": {
+      "128": "package.png"
+    },
     "permissions": ["storage", "activeTab", "tabs","notifications"],
     "content_scripts": [
       {

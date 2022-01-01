@@ -6,7 +6,7 @@ console.log("successfully added the script");
 
 let prevText = null;
 window.onload = () => {
-  createPopup(111, "data of something");
+  createPopup();
   let selection = document.querySelector(".id-22-lol section");
   let div = document.querySelector(".id-22-lol");
   let packageNpmName = document.querySelector("#h1-lol-123");
@@ -46,7 +46,6 @@ window.onload = () => {
   document.addEventListener("click", function (e) {
     let left = e.offsetX;
     let top = e.offsetY;
-    // console.log(left, top, window.scrollX, window.scrollY);
     selection.style.marginLeft = left - top + "px";
     let marginTop = `${Math.abs(window.scrollY+200 - top)}px`;
     selection.style.marginTop = marginTop;

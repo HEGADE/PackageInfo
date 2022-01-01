@@ -1,4 +1,4 @@
-export let showPopUp=(pointerPosition,data)=>{
+export let showPopUp=()=>{
     let body=document.querySelector("body")
     let div=document.createElement("div")
     div.className="id-22-lol"
