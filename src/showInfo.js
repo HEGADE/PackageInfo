@@ -16,8 +16,8 @@ export let showPopUp=(pointerPosition,data)=>{
         </ul>
 
         <div class="imge-container-12-lol">
-          <a id="a1-lol-123" href="#"></a>
-          <a id="a2-lol-123" href="#"></a>
+          <a id="a1-lol-123" href="https://npm.org">Npm</a>
+          <a id="a2-lol-123" href="https://github.com">Github</a>
         </div>
       </section>
     `
