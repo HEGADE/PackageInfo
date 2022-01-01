@@ -1,24 +1,8 @@
-import { showPopUp as createPopup } from "./showInfo";
-import { sleep, getData } from "./utils";
+import { showPopUp as createPopup } from "./npm/showInfo";
+import { sleep, getData,fillPopup } from "./npm/utils";
 
 console.log("successfully added the script");
 
-const fillPopup = async (packageNpm) => {
-  packageNpm.packageNpmName.innerText = packageNpm.data?.results[0]?.package?.name;
-  packageNpm.packageNpmDes.innerText = packageNpm.data?.results[0]?.package?.description;
-  packageNpm.author.innerText =
-    "Publisher: " + packageNpm.data?.results[0]?.package?.publisher?.username;
-  packageNpm.authorMail.innerText =
-    "Mail: " + packageNpm.data?.results[0]?.package?.publisher?.email;
-  packageNpm.npmLink.href = packageNpm.data?.results[0]?.package?.links?.npm;
-  if (packageNpm.data?.results[0]?.package?.links?.repository) {
-    packageNpm.githubLink.href =
-      packageNpm.data?.results[0]?.package?.links?.repository;
-    packageNpm.githubLink.innerText = "Github";
-  } else {
-    packageNpm.githubLink.innerText = "";
-  }
-};
 
 let prevText = null;
 window.onload = () => {
@@ -37,7 +21,6 @@ window.onload = () => {
     await sleep(1000);
     let selectedText = window.getSelection().toString();
     if (selectedText && selectedText != prevText) {
-      console.log(selectedText, prevText, selectedText != prevText);
       prevText = selectedText;
       let data = await getData(selectedText);
       if (!data?.results[0]?.package?.name) {
