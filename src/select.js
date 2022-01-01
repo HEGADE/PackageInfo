@@ -65,7 +65,7 @@ window.onload = () => {
     let top = e.offsetY;
     // console.log(left, top, window.scrollX, window.scrollY);
     selection.style.marginLeft = left - top + "px";
-    let marginTop = `${Math.abs(window.scrollY - top)}px`;
+    let marginTop = `${Math.abs(window.scrollY+200 - top)}px`;
     selection.style.marginTop = marginTop;
   });
 };
