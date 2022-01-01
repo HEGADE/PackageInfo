@@ -1,47 +1,37 @@
-import { showPopUp } from "./showInfo";
+import { showPopUp as createPopup } from "./showInfo";
+import { sleep, getData } from "./utils";
+
 console.log("successfully added the script");
 
-const getData = async (searchPackage) => {
-  let data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
-  let jsonData = await data.json();
-  return jsonData;
-};
-
-const sleep = (time) =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-
-const fillPopup = async(data,h1, p, li1, li2, a1, a2) => {
-  h1.innerText = data?.results[0]?.package?.name;
-  p.innerText = data?.results[0]?.package?.description;
-  li1.innerText =
-    "Publisher: " + data?.results[0]?.package?.publisher?.username;
-  li2.innerText = "Mail: " + data?.results[0]?.package?.publisher?.email;
-  a1.href = data?.results[0]?.package?.links?.npm;
-  if (data?.results[0]?.package?.links?.repository) {
-    a2.href = data?.results[0]?.package?.links?.repository;
-    a2.innerText="Github"
+const fillPopup = async (packageNpm) => {
+  packageNpm.packageNpmName.innerText = packageNpm.data?.results[0]?.package?.name;
+  packageNpm.packageNpmDes.innerText = packageNpm.data?.results[0]?.package?.description;
+  packageNpm.author.innerText =
+    "Publisher: " + packageNpm.data?.results[0]?.package?.publisher?.username;
+  packageNpm.authorMail.innerText =
+    "Mail: " + packageNpm.data?.results[0]?.package?.publisher?.email;
+  packageNpm.npmLink.href = packageNpm.data?.results[0]?.package?.links?.npm;
+  if (packageNpm.data?.results[0]?.package?.links?.repository) {
+    packageNpm.githubLink.href =
+      packageNpm.data?.results[0]?.package?.links?.repository;
+    packageNpm.githubLink.innerText = "Github";
   } else {
-    a2.innerText = "";
+    packageNpm.githubLink.innerText = "";
   }
-  console.log(data?.results[0]?.package?.links?.repository)
-
 };
 
 let prevText = null;
 window.onload = () => {
-  showPopUp(111, "data of something");
+  createPopup(111, "data of something");
   let selection = document.querySelector(".id-22-lol section");
   let div = document.querySelector(".id-22-lol");
-  let h1 = document.querySelector("#h1-lol-123");
-  let p = document.querySelector("#p-lol-123");
-  let li1 = document.querySelector("#li1-lol-123");
-  let li2 = document.querySelector("#li2-lol-123");
-  let a1 = document.querySelector("#a1-lol-123");
-  let a2 = document.querySelector("#a2-lol-123");
+  let packageNpmName = document.querySelector("#h1-lol-123");
+  let packageNpmDes = document.querySelector("#p-lol-123");
+  let author = document.querySelector("#li1-lol-123");
+  let authorMail = document.querySelector("#li2-lol-123");
+  let npmLink = document.querySelector("#a1-lol-123");
+  let githubLink = document.querySelector("#a2-lol-123");
+  let packageNpm = {};
   document.addEventListener("selectionchange", async (e) => {
     selection.style.display = "none";
     await sleep(1000);
@@ -54,22 +44,28 @@ window.onload = () => {
         selection.style.display = "block";
         return;
       }
-
-      fillPopup(data,h1, p, li1, li2, a1, a2);
-    
-    
+      packageNpm = {
+        data,
+        packageNpmName,
+        packageNpmDes,
+        author,
+        authorMail,
+        npmLink,
+        githubLink,
+      };
+      fillPopup(packageNpm);
       selection.style.display = "block";
-      data=null
+      data = null;
       return;
     }
   });
+
   document.addEventListener("click", function (e) {
     let left = e.offsetX;
     let top = e.offsetY;
-    console.log(left, top, window.scrollX, window.scrollY);
+    // console.log(left, top, window.scrollX, window.scrollY);
     selection.style.marginLeft = left - top + "px";
-    let topp = `${Math.abs(window.scrollY - top)}px`;
-    console.log(topp);
-    selection.style.marginTop = topp;
+    let marginTop = `${Math.abs(window.scrollY - top)}px`;
+    selection.style.marginTop = marginTop;
   });
 };
