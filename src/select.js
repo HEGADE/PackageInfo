@@ -25,6 +25,7 @@ window.onload = () => {
   let a2 = document.querySelector("#a2-lol-123");
   let renderCount = 0;
   document.addEventListener("selectionchange", async (e) => {
+    selection.style.display = "none";
     await sleep(1000);
     let selectedText = window.getSelection().toString();
     console.log("after something");
@@ -35,23 +36,29 @@ window.onload = () => {
       console.log(selectedText, prevText, selectedText != prevText);
       prevText = selectedText;
       let data = await getData(selectedText);
-      console.log(data?.results[0]?.package?.description);
-      h1.innerText=data?.results[0]?.package?.name
+      if (!data?.results[0]?.package?.name) {
+        selection.style.display = "block";
+
+        return;
+      }
+
+      h1.innerText = data?.results[0]?.package?.name;
       p.innerText = data?.results[0]?.package?.description;
       li1.innerText =
         "Publisher: " + data?.results[0]?.package?.publisher?.username;
       li2.innerText = "Mail: " + data?.results[0]?.package?.publisher?.email;
       a1.href = data?.results[0]?.package?.links?.npm;
-      if (data?.results[0]?.package?.links?.repository){
-
+      if (data?.results[0]?.package?.links?.repository) {
         a2.href = data?.results[0]?.package?.links?.repository;
+      } else {
+        a2.innerText = "";
       }
-      else {a2.innerText = ""};
-      console.log(data?.results[0]?.package);
-
       selection.style.display = "block";
-
+      // setTimeout(() => {
+      //   selection.style.display = "none";
+      // }, 2400);
       renderCount = 0;
+
       return;
     }
   });
