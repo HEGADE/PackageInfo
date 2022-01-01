@@ -1,8 +1,10 @@
 <script>
   import { image } from "./image";
+  import Option from "./s_components/Options.svelte"
 </script>
 
 <main>
+  
   <h1>Weclome packageinfo</h1>
   <p>
     you just need to select the package name and regarding infomation wil be
@@ -11,6 +13,7 @@
   <div>
     <img src={image} alt="github" />
   </div>
+  <Option/>
 </main>
 
 <style global>
