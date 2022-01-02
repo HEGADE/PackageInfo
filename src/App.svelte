@@ -1,11 +1,11 @@
 <script>
   import { image } from "./image";
-  import Option from "./s_components/Options.svelte"
+  import Option from "./s_components/Options.svelte";
+  export let name;
 </script>
 
 <main>
-  
-  <h1>Weclome packageinfo</h1>
+  <h1>Weclome packageinfo {name}</h1>
   <p>
     you just need to select the package name and regarding infomation wil be
     displayed automatically
@@ -13,7 +13,7 @@
   <div>
     <img src={image} alt="github" />
   </div>
-  <Option/>
+  <Option />
 </main>
 
 <style global>

@@ -1,7 +1,15 @@
 import { showPopUp as createPopup } from "./npm/showInfo";
-import { sleep, getData,fillPopup } from "./npm/utils";
-let prevText = null;
+import { sleep, getData, fillPopup } from "./npm/utils";
+let packageOption = "nodejs";
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  packageOption = request.option;
+  sendResponse({ selected: packageOption });
+  console.log(packageOption);
+});
+
 window.onload = () => {
+  let prevText = null;
+  let prevOption=null
   createPopup();
   let selection = document.querySelector(".id-22-lol section");
   let packageNpmName = document.querySelector("#h1-heading-content");
@@ -12,18 +20,15 @@ window.onload = () => {
   let githubLink = document.querySelector("#a2-lol-123");
   let packageNpm = {};
 
-
   document.addEventListener("selectionchange", async (e) => {
     selection.style.display = "none";
     await sleep(1000);
     let selectedText = window.getSelection().toString();
-    if (selectedText && selectedText != prevText) {
+    if (selectedText && (selectedText != prevText||packageOption!=prevOption)) {
       prevText = selectedText;
-      let data = await getData(selectedText);
-      if (!data?.results[0]?.package?.name) {
-        selection.style.display = "block";
-        return;
-      }
+      prevOption=packageOption
+      let data = await getData(selectedText, packageOption);
+  
       packageNpm = {
         data,
         packageNpmName,
@@ -33,8 +38,8 @@ window.onload = () => {
         npmLink,
         githubLink,
       };
-      
-      fillPopup(packageNpm);
+
+      fillPopup(packageNpm,packageOption);
       selection.style.display = "block";
       data = null;
       return;
@@ -45,7 +50,7 @@ window.onload = () => {
     let left = e.offsetX;
     let top = e.offsetY;
     selection.style.marginLeft = left - top + "px";
-    let marginTop = `${Math.abs(window.scrollY+200 - top)}px`;
+    let marginTop = `${Math.abs(window.scrollY + 200 - top)}px`;
     selection.style.marginTop = marginTop;
   });
 };
