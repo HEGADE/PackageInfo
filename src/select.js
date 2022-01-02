@@ -1,6 +1,6 @@
 import { showPopUp as createPopup } from "./npm/showInfo";
 import { sleep, getData, fillPopup } from "./npm/utils";
-let packageOption = "nodejs";
+let packageOption =null;
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   packageOption = request.option;
@@ -10,6 +10,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 let prevText = null;
 let prevOption = null;
+chrome.storage.local.get(["key"], function (result) {
+   packageOption=result?.key || "nodejs"
+ 
+  
+});
 createPopup();
 let selection = document.querySelector(".id-22-lol section");
 let packageNpmName = document.querySelector("#h1-heading-content");

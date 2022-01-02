@@ -1,21 +1,15 @@
 <script>
-  import {onMount} from "svelte"
-  onMount(()=>{
-
+  import { onMount } from "svelte";
+  onMount(() => {
     let python = document.getElementById("python_radio");
     let nodejs = document.getElementById("node_radio");
     chrome.storage.local.get(["key"], function (result) {
-
-        console.log(result.key)
-        if (result?.key === "python") {
-          python.checked = true;
-        } else {
-          nodejs.checked = true;
-        }
+      if (result?.key === "python") python.checked = true;
+      else nodejs.checked = true;
       
     });
-  })
-    
+  });
+
   const getSelectedValue = (e) => {
     let option = e.currentTarget.value;
     chrome.storage.local.set({ key: option }, function () {
