@@ -7,7 +7,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(packageOption);
 });
 
-window.onload = () => {
   let prevText = null;
   let prevOption=null
   createPopup();
@@ -30,6 +29,7 @@ window.onload = () => {
       let data = await getData(selectedText, packageOption);
   
       packageNpm = {
+        selection,
         data,
         packageNpmName,
         packageNpmDes,
@@ -53,4 +53,3 @@ window.onload = () => {
     let marginTop = `${Math.abs(window.scrollY + 200 - top)}px`;
     selection.style.marginTop = marginTop;
   });
-};

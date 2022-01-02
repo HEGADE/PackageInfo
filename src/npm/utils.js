@@ -1,4 +1,4 @@
-import {fillPopupForPython} from "../pypi/utils"
+import { fillPopupForPython } from "../pypi/utils";
 export const sleep = (time) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -21,7 +21,7 @@ export const getData = async (searchPackage, option) => {
 export const fillPopup = async (packageNpm, option) => {
   if (option === "nodejs") {
     if (!packageNpm.data?.results[0]?.package?.name) {
-      selection.style.display = "block";
+      packageNpm.selection.style.display = "block";
       return;
     }
     packageNpm.packageNpmName.innerText =
@@ -33,6 +33,7 @@ export const fillPopup = async (packageNpm, option) => {
     packageNpm.authorMail.innerText =
       "Mail: " + packageNpm.data?.results[0]?.package?.publisher?.email;
     packageNpm.npmLink.href = packageNpm.data?.results[0]?.package?.links?.npm;
+    packageNpm.npmLink.innerText = "Npm";
     if (packageNpm.data?.results[0]?.package?.links?.repository) {
       packageNpm.githubLink.href =
         packageNpm.data?.results[0]?.package?.links?.repository;
@@ -43,8 +44,6 @@ export const fillPopup = async (packageNpm, option) => {
 
     return;
   }
-  console.log(packageNpm.data.info.name)
-  fillPopupForPython(packageNpm,packageNpm.data.info)
-  
+  console.log(packageNpm.data.info.name);
+  fillPopupForPython(packageNpm, packageNpm.data.info);
 };
-
