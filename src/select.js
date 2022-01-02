@@ -11,6 +11,8 @@ window.onload = () => {
   let npmLink = document.querySelector("#a1-lol-123");
   let githubLink = document.querySelector("#a2-lol-123");
   let packageNpm = {};
+
+
   document.addEventListener("selectionchange", async (e) => {
     selection.style.display = "none";
     await sleep(1000);
@@ -31,6 +33,7 @@ window.onload = () => {
         npmLink,
         githubLink,
       };
+      
       fillPopup(packageNpm);
       selection.style.display = "block";
       data = null;
