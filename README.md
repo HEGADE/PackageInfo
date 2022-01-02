@@ -1,5 +1,5 @@
 # PackageInfo
-## chrome-extension which provide information about node packages, whenever you select the package name using mouse
+## chrome-extension which provides information about node packages, whenever you select the package name using mouse
 <br>
 <br>
 
