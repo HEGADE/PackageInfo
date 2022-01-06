@@ -63,6 +63,7 @@ export const fillPopup = async (packageNpm, option) => {
     fillPopupForPython(packageNpm, packageNpm?.data?.info);
   }
   catch(e){
+    packageNpm.selection.style.display = "block";
     console.log("not found")
   }
 };

@@ -53,8 +53,10 @@ try{
 }
 catch(e){
   console.log("not found")
+  packageNpm.selection.style.display = "block";
+  
+
 }
-    selection.style.display = "block";
     data = null;
     return;
   }
