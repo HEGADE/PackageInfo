@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "packageInfo",
     "version": "1.0.0",
-    "description": "helps to find the information about node packages  in one select",
+    "description": "helps to find the information about  packages  from mouse select",
     "icons": {
       "128": "package.png"
     },

@@ -47,8 +47,13 @@ document.addEventListener("selectionchange", async (e) => {
       npmLink,
       githubLink,
     };
+try{
 
-    fillPopup(packageNpm, packageOption);
+  fillPopup(packageNpm, packageOption);
+}
+catch(e){
+  console.log("not found")
+}
     selection.style.display = "block";
     data = null;
     return;

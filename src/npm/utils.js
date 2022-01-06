@@ -19,19 +19,14 @@ export const getData = async (searchPackage, option) => {
     jsonData = await data.json();
   } else {
     try{
-     console.log(searchPackage)
-      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`,{
-        headers:{
-          
-          "Access-Control-Allow-Origin":"*" 
-      },
-       mode:"no-cors"
-    });
+      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`,
+      
+    );
   }
   catch(e){
-    console.log(e)
+    console.log("package not found")
   }
-    jsonData = await data.json();
+    jsonData = await data?.json();
   }
   return jsonData;
 };
@@ -62,6 +57,12 @@ export const fillPopup = async (packageNpm, option) => {
 
     return;
   }
-  console.log(packageNpm.data.info.name);
-  fillPopupForPython(packageNpm, packageNpm.data.info);
+  try{
+
+    console.log(packageNpm?.data?.info?.name);
+    fillPopupForPython(packageNpm, packageNpm?.data?.info);
+  }
+  catch(e){
+    console.log("not found")
+  }
 };
