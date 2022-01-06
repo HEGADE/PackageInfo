@@ -5,23 +5,18 @@ export const sleep = (time) =>
       resolve();
     }, time);
   });
-
-
 export const getData = async (searchPackage, option) => {
   let jsonData = null;
-  let data=null
+  let data = null;
   if (option === "nodejs") {
-     data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
+    data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
     jsonData = await data.json();
   } else {
-    try{
-      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`,
-      
-    );
-  }
-  catch(e){
-    console.log("package not found")
-  }
+    try {
+      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`);
+    } catch (e) {
+      console.log("package not found");
+    }
     jsonData = await data?.json();
   }
   return jsonData;
@@ -53,13 +48,11 @@ export const fillPopup = async (packageNpm, option) => {
 
     return;
   }
-  try{
-
+  try {
     console.log(packageNpm?.data?.info?.name);
     fillPopupForPython(packageNpm, packageNpm?.data?.info);
-  }
-  catch(e){
+  } catch (e) {
     packageNpm.selection.style.display = "block";
-    console.log("not found")
+    console.log("not found");
   }
 };

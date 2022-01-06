@@ -11,7 +11,9 @@
     displayed automatically
   </p>
   <div>
+    <a href="https://github.com/HEGADE/PackageInfo" target="_blank">
     <img src={image} alt="github" />
+  </a>
   </div>
   <Option />
 </main>
