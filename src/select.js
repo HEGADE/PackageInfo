@@ -1,6 +1,6 @@
 import { showPopUp as createPopup } from "./npm/showInfo";
 import { sleep, getData, fillPopup } from "./npm/utils";
-let packageOption =null;
+let packageOption = null;
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   packageOption = request.option;
@@ -11,9 +11,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 let prevText = null;
 let prevOption = null;
 chrome.storage.local.get(["key"], function (result) {
-   packageOption=result?.key || "nodejs"
- 
-  
+  packageOption = result?.key || "nodejs";
 });
 createPopup();
 let selection = document.querySelector(".id-22-lol section");
@@ -26,6 +24,7 @@ let githubLink = document.querySelector("#a2-lol-123");
 let packageNpm = {};
 
 document.addEventListener("selectionchange", async (e) => {
+  console.log("selecting");
   selection.style.display = "none";
   await sleep(1000);
   let selectedText = window.getSelection().toString();
@@ -36,6 +35,7 @@ document.addEventListener("selectionchange", async (e) => {
     prevText = selectedText;
     prevOption = packageOption;
     let data = await getData(selectedText, packageOption);
+    console.log("selecting");
 
     packageNpm = {
       selection,
@@ -47,16 +47,14 @@ document.addEventListener("selectionchange", async (e) => {
       npmLink,
       githubLink,
     };
-try{
-
-  fillPopup(packageNpm, packageOption);
-}
-catch(e){
-  console.log("not found")
-  packageNpm.selection.style.display = "block";
-  
-
-}
+    try {
+      fillPopup(packageNpm, packageOption);
+      // console.log("something"); ->need to removed
+    } catch (e) {
+      console.log("not found");
+    } finally {
+      packageNpm.selection.style.display = "block";
+    }
     data = null;
     return;
   }

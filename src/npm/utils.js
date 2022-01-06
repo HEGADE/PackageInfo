@@ -24,10 +24,13 @@ export const getData = async (searchPackage, option) => {
 
 export const fillPopup = async (packageNpm, option) => {
   if (option === "nodejs") {
+    console.log("nodejs")
     if (!packageNpm.data?.results[0]?.package?.name) {
       packageNpm.selection.style.display = "block";
       return;
     }
+    console.log("nodejs22")
+
     packageNpm.packageNpmName.innerText =
       packageNpm.data?.results[0]?.package?.name;
     packageNpm.packageNpmDes.innerText =
@@ -51,8 +54,12 @@ export const fillPopup = async (packageNpm, option) => {
   try {
     console.log(packageNpm?.data?.info?.name);
     fillPopupForPython(packageNpm, packageNpm?.data?.info);
+    console.log("python")
+
   } catch (e) {
     packageNpm.selection.style.display = "block";
+    console.log("python error",e)
+
     console.log("not found");
   }
 };
