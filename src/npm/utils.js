@@ -6,11 +6,7 @@ export const sleep = (time) =>
     }, time);
   });
 
-  const myHeaders = new Headers({
-    "Access-Control-Allow-Origin": "*"
 
-
-  });
 export const getData = async (searchPackage, option) => {
   let jsonData = null;
   let data=null
