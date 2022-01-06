@@ -6,13 +6,31 @@ export const sleep = (time) =>
     }, time);
   });
 
+  const myHeaders = new Headers({
+    "Access-Control-Allow-Origin": "*"
+
+
+  });
 export const getData = async (searchPackage, option) => {
   let jsonData = null;
+  let data=null
   if (option === "nodejs") {
-    let data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
+     data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
     jsonData = await data.json();
   } else {
-    let data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`);
+    try{
+     console.log(searchPackage)
+      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`,{
+        headers:{
+          
+          "Access-Control-Allow-Origin":"*" 
+      },
+       mode:"no-cors"
+    });
+  }
+  catch(e){
+    console.log(e)
+  }
     jsonData = await data.json();
   }
   return jsonData;

@@ -6,7 +6,7 @@
     "icons": {
       "128": "package.png"
     },
-    "permissions": ["storage", "activeTab", "tabs","notifications"],
+    "permissions": ["storage", "activeTab"],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
