@@ -1,8 +1,6 @@
 export const fillPopupForPython = (DOMEle, packagePyPi) => {
   console.log(packagePyPi?.name);
-  if(packagePyPi.author==="UNKNOWN"){
-    throw new Error("Not found")
-  }
+  if (packagePyPi.author === "UNKNOWN") throw new Error("Not found");
   DOMEle.packageNpmName.innerText = packagePyPi.name;
   DOMEle.packageNpmDes.innerText = packagePyPi.description;
   DOMEle.author.innerText = "Publisher: " + packagePyPi.author;

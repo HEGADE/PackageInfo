@@ -15,8 +15,8 @@ export let showPopUp=()=>{
         </ul>
 
         <div class="imge-container-12-lol">
-          <a id="a1-lol-123" href="https://npm.org">Npm</a>
-          <a id="a2-lol-123" href="https://github.com">Github</a>
+          <a id="a1-lol-123" href="https://npm.org" target="_blank">Npm</a>
+          <a id="a2-lol-123" href="https://github.com" target="_blank">Github</a>
         </div>
       </section>
     `
