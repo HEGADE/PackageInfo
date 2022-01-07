@@ -10,7 +10,7 @@ export const fillPopupForPython = (DOMEle, packagePyPi) => {
     packagePyPi = { ...packagePyPi, name: "Package not found" };
 
   DOMEle.packageNpmName.innerText = packagePyPi.name;
-  if (packagePyPi?.description === "UNKNOWN")
+  if (packagePyPi?.description === "UNKNOWN"||packagePyPi?.description ==="")
     packagePyPi.description = "Description is not available";
 
   DOMEle.packageNpmDes.innerHTML =

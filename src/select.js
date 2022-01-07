@@ -1,18 +1,24 @@
 import { showPopUp as createPopup } from "./npm/showInfo";
 import { sleep, getData, fillPopup } from "./npm/utils";
 let packageOption = null;
-
+let stop=false
+chrome.storage.local.get(["key"], function (result) {
+  packageOption = result?.key.option || "nodejs";
+  stop=result.key.stop|| false
+});
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  packageOption = request.option;
-  sendResponse({ selected: packageOption });
-  console.log(packageOption);
+  console.log(request?.stop)
+  packageOption = request.option || packageOption;
+  stop=request?.stop===true||request?.stop===false?request?.stop:stop
+  
+
+  console.log(packageOption,stop);
+  sendResponse({ selected: packageOption,stop });
 });
 
 let prevText = null;
 let prevOption = null;
-chrome.storage.local.get(["key"], function (result) {
-  packageOption = result?.key || "nodejs";
-});
+
 createPopup();
 let selection = document.querySelector(".id-22-lol section");
 let packageNpmName = document.querySelector("#h1-heading-content");
@@ -29,7 +35,7 @@ document.addEventListener("selectionchange", async (e) => {
   let selectedText = window.getSelection().toString();
   if (
     selectedText &&
-    (selectedText != prevText || packageOption != prevOption)
+    (selectedText != prevText || packageOption != prevOption) &&!stop
   ) {
     prevText = selectedText;
     prevOption = packageOption;

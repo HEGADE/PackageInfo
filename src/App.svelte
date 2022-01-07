@@ -1,6 +1,7 @@
 <script>
   import { image } from "./image";
   import Option from "./s_components/Options.svelte";
+  import Start from "./s_components/Start.svelte";
   export let name;
 </script>
 
@@ -15,6 +16,7 @@
     <img src={image} alt="github" />
   </a>
   </div>
+  <Start/>
   <Option />
 </main>
 
