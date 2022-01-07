@@ -52,8 +52,10 @@ document.addEventListener("selectionchange", async (e) => {
       // console.log("something"); ->need to removed
     } catch (e) {
       console.log("not found");
-    } finally {
+    } 
+    finally{
       packageNpm.selection.style.display = "block";
+
     }
     data = null;
     return;

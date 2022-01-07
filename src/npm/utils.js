@@ -57,9 +57,12 @@ export const fillPopup = async (packageNpm, option) => {
     console.log("python")
 
   } catch (e) {
-    packageNpm.selection.style.display = "block";
     console.log("python error",e)
 
     console.log("not found");
+  }
+  finally{
+    packageNpm.selection.style.display = "block";
+
   }
 };
