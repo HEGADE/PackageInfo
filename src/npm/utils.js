@@ -29,7 +29,6 @@ export const fillPopup = async (packageNpm, option) => {
       packageNpm.selection.style.display = "block";
       return;
     }
-    console.log("nodejs22")
 
     packageNpm.packageNpmName.innerText =
       packageNpm.data?.results[0]?.package?.name;
@@ -48,21 +47,18 @@ export const fillPopup = async (packageNpm, option) => {
     } else {
       packageNpm.githubLink.innerText = "";
     }
-
     return;
   }
+
   try {
     console.log(packageNpm?.data?.info?.name);
     fillPopupForPython(packageNpm, packageNpm?.data?.info);
     console.log("python")
 
   } catch (e) {
-    console.log("python error",e)
-
-    console.log("not found");
+    console.log("Error occurred in python")
   }
   finally{
     packageNpm.selection.style.display = "block";
-
   }
 };

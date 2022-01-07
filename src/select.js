@@ -24,7 +24,6 @@ let githubLink = document.querySelector("#a2-lol-123");
 let packageNpm = {};
 
 document.addEventListener("selectionchange", async (e) => {
-  console.log("selecting");
   selection.style.display = "none";
   await sleep(1000);
   let selectedText = window.getSelection().toString();
@@ -35,7 +34,6 @@ document.addEventListener("selectionchange", async (e) => {
     prevText = selectedText;
     prevOption = packageOption;
     let data = await getData(selectedText, packageOption);
-    console.log("selecting");
 
     packageNpm = {
       selection,
@@ -49,13 +47,10 @@ document.addEventListener("selectionchange", async (e) => {
     };
     try {
       fillPopup(packageNpm, packageOption);
-      // console.log("something"); ->need to removed
     } catch (e) {
-      console.log("not found");
-    } 
-    finally{
+      console.log("Some error occurred");
+    } finally {
       packageNpm.selection.style.display = "block";
-
     }
     data = null;
     return;
