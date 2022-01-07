@@ -6,8 +6,13 @@
 
 Whenever you surf through the node or python projects in GitHub or anywhere else, often time you will be encountered with unknown packages, to know about that package you need to google, but by using this chrome extension you just need to select the package and the rest of the heavy lifting will be taken care and information of the package will be displayed as pop in the same web page
 
+[Download Extesnion](https://chrome.google.com/webstore/detail/packageinfo/chcfffnmjgjcpoanhglmbibbmianphjn?hl=en-GB&authuser=1)
+
+
 ## Demo
 ![PackageInfo](https://github.com/HEGADE/assets/blob/main/pc.jpg)
+
+## Local development steps👇
 
 ## Installation
 
