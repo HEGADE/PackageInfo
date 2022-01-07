@@ -2,7 +2,7 @@ function makeReadmore(des, package_url) {
   return des?.length > 100
     ? des?.substring(0, 100) +
         "  ...... " +
-        ` <a href=${package_url} target="_blank">readmore</a>`
+        ` <a href=${package_url} target="_blank" style="color:blue">readmore</a>`
     : des;
 }
 export const fillPopupForPython = (DOMEle, packagePyPi) => {

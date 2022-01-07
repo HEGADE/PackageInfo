@@ -13,9 +13,9 @@ export const getData = async (searchPackage, option) => {
     jsonData = await data.json();
   } else {
     try {
-      data = await fetch(`https://pypi.org/pypi/${searchPackage}/json`);
+      data = await fetch(`https://pypi.org/pypi/${searchPackage?.replace(" ","")}/json`);
     } catch (e) {
-      console.log("package not found");
+      console.log("package not found",e);
     }
     jsonData = await data?.json();
   }
