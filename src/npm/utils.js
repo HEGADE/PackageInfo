@@ -1,30 +1,34 @@
 import { fillPopupForPython } from "../pypi/utils";
+
+
+// Holds the program execution for specified amount of time
 export const sleep = (time) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
     }, time);
   });
+
+
+//  Request handler  for getting package information from the API
 export const getData = async (searchPackage, option) => {
-  let jsonData = null;
   let data = null;
-  if (option === "nodejs") {
-    data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
-    jsonData = await data.json();
-  } else {
-    try {
-      data = await fetch(`https://pypi.org/pypi/${searchPackage?.replace(" ","")}/json`);
-    } catch (e) {
-      console.log("package not found",e);
-    }
-    jsonData = await data?.json();
+  try {
+    if (option === "nodejs")
+      data = await fetch(`https://api.npms.io/v2/search?q=${searchPackage}`);
+    else
+      data = await fetch(
+        `https://pypi.org/pypi/${searchPackage?.replace(" ", "")}/json`
+      );
+  } catch (e) {
+    console.log(e);
   }
-  return jsonData;
+  return await data?.json();
 };
 
 export const fillPopup = async (packageNpm, option) => {
   if (option === "nodejs") {
-    console.log("nodejs")
+    console.log("nodejs");
     if (!packageNpm.data?.results[0]?.package?.name) {
       packageNpm.selection.style.display = "block";
       return;
@@ -53,12 +57,10 @@ export const fillPopup = async (packageNpm, option) => {
   try {
     console.log(packageNpm?.data?.info?.name);
     fillPopupForPython(packageNpm, packageNpm?.data?.info);
-    console.log("python")
-
+    console.log("python");
   } catch (e) {
-    console.log("Error occurred in python")
-  }
-  finally{
+    console.log("Error occurred in python");
+  } finally {
     packageNpm.selection.style.display = "block";
   }
 };
